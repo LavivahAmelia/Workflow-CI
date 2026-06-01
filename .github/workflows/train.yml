@@ -1,0 +1,29 @@
+name: Train Model
+
+on:
+  push: 
+    branches:
+      -main
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: action/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install Dependencies
+        run: |
+          pip install pandas
+          pip install scikit-learn
+          pip install mlflow
+
+      - name: Run Training
+        working-directory: MLProject
+        run: python modelling.py
