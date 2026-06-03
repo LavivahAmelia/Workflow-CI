@@ -28,4 +28,4 @@ jobs:
 
       - name: Run Training
         working-directory: MLProject
-        run: python modelling.py
+        run: mlflow run . --entry-point main
