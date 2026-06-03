@@ -28,4 +28,4 @@ jobs:
 
       - name: Run Training
         working-directory: MLProject
-        run: mlflow run . --entry-point main
+        run: mlflow run . --entry-point main --env-manager=local
