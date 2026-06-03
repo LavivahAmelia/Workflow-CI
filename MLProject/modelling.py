@@ -22,14 +22,16 @@ y_test = pd.read_csv('Titanic_Preprocessing/y_test.csv')
 
 mlflow.autolog()
 
+mlflow.autolog()
+
 with mlflow.start_run():
 
-  model = RandomForestClassifier()
+    model = RandomForestClassifier()
 
-  model.fit(X_train, y_train.values.ravel())
+    model.fit(X_train, y_train.values.ravel())
+    pred = model.predict(X_test)
+    acc = accuracy_score(y_test, pred)
 
-  pred = model.predict(X_test)
+    mlflow.sklearn.log_model(model, "model")
 
-  acc = accuracy_score(y_test, pred)
-
-  print("Accuracy:", acc)
+    print("Accuracy:", acc)
